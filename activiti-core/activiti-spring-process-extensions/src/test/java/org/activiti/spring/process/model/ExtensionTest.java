@@ -1,24 +1,25 @@
 package org.activiti.spring.process.model;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 import java.util.Collections;
 import java.util.HashMap;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class ExtensionTest {
 
     @Mock
     private ProcessVariablesMapping processVariablesMapping;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        initMocks(this);
         given(processVariablesMapping.getInputs()).willReturn(Collections.emptyMap());
         given(processVariablesMapping.getOutputs()).willReturn(Collections.emptyMap());
     }

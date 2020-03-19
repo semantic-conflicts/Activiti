@@ -1,22 +1,18 @@
 package org.activiti.spring.resources;
 
-import org.activiti.engine.RepositoryService;
-import org.activiti.engine.impl.util.IoUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.mockito.Mockito;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.util.ResourceUtils;
+import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-
-import static org.junit.Assert.*;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.impl.util.IoUtil;
+import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 public class DeploymentResourceLoaderTest {
 
@@ -28,10 +24,10 @@ public class DeploymentResourceLoaderTest {
         names.add("classpath:file-unselected.txt");
         Resource resource = new ClassPathResource("file-selected.txt");
 
-        RepositoryService service = Mockito.mock(RepositoryService.class);
-        Mockito.when(service.getDeploymentResourceNames("123456"))
+        RepositoryService service = mock(RepositoryService.class);
+        when(service.getDeploymentResourceNames("123456"))
                 .thenReturn(names);
-        Mockito.when(service.getResourceAsStream("123456", "classpath:file-selected.txt"))
+        when(service.getResourceAsStream("123456", "classpath:file-selected.txt"))
                 .thenReturn(resource.getInputStream());
 
         DeploymentResourceLoader deploymentResourceLoader = new DeploymentResourceLoader<String>();
@@ -54,7 +50,7 @@ public class DeploymentResourceLoaderTest {
         List<String> loaded = deploymentResourceLoader.loadResourcesForDeployment("123456", selectorReader);
 
         //then
-        Assertions.assertThat(loaded)
+        assertThat(loaded)
                 .hasSize(1)
                 .contains("a selected resource\n");
 

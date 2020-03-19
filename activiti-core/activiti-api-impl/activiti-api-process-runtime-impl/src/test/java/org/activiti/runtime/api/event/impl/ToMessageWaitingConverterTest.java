@@ -16,19 +16,20 @@
 
 package org.activiti.runtime.api.event.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 import org.activiti.api.process.model.events.BPMNMessageWaitingEvent;
 import org.activiti.api.runtime.model.impl.BPMNMessageImpl;
 import org.activiti.engine.delegate.event.ActivitiMessageEvent;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class ToMessageWaitingConverterTest {
 
     @InjectMocks
@@ -36,11 +37,6 @@ public class ToMessageWaitingConverterTest {
 
     @Mock
     private BPMNMessageConverter bpmnMessageConverter;
-
-    @Before
-    public void setUp() {
-        initMocks(this);
-    }
 
     @Test
     public void fromShouldReturnConvertedEventAndSetProcessInstanceIdAndProcessDefinitionId() {
@@ -50,7 +46,7 @@ public class ToMessageWaitingConverterTest {
         given(internalEvent.getProcessInstanceId()).willReturn("procInstId");
 
         BPMNMessageImpl bpmnMessage = new BPMNMessageImpl("myMessage");
-        
+
         given(bpmnMessageConverter.convertToBPMNMessage(internalEvent)).willReturn(bpmnMessage);
 
         //when

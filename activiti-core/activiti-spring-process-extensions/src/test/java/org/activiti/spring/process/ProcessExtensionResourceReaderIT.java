@@ -16,20 +16,16 @@
 
 package org.activiti.spring.process;
 
-import java.io.InputStream;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.InputStream;
 import org.activiti.engine.RepositoryService;
 import org.activiti.spring.process.model.ProcessExtensionModel;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class ProcessExtensionResourceReaderIT {
 

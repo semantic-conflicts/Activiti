@@ -1,27 +1,27 @@
 package org.activiti.editor.language.xml;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.Message;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MessageConverterTest extends AbstractConverterTest {
-  
+
   @Test
   public void convertXMLToModel() throws Exception {
     BpmnModel bpmnModel = readXMLFile();
     validateModel(bpmnModel);
   }
-  
+
   @Test
   public void convertModelToXML() throws Exception {
     BpmnModel bpmnModel = readXMLFile();
     BpmnModel parsedModel = exportAndReadXMLFile(bpmnModel);
     validateModel(parsedModel);
   }
-  
+
   private void validateModel(BpmnModel model) {
     Message message = model.getMessage("writeReport");
     assertNotNull(message);
@@ -34,7 +34,7 @@ public class MessageConverterTest extends AbstractConverterTest {
     assertEquals("http://foo.bar.com/Examples:writeReportItem2", message2.getItemRef());
     assertEquals("newWriteReport2", message2.getName());
     assertEquals("writeReport2", message2.getId());
-    
+
     Message message3 = model.getMessage("writeReport3");
     assertNotNull(message3);
     assertEquals("Examples:writeReportItem3", message3.getItemRef());
@@ -42,7 +42,7 @@ public class MessageConverterTest extends AbstractConverterTest {
     assertEquals("writeReport3", message3.getId());
 
   }
-  
+
   protected String getResource() {
         return "message.bpmn";
   }

@@ -16,13 +16,12 @@
 
 package org.activiti.runtime.api.event.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
 
 import org.activiti.api.runtime.model.impl.MessageSubscriptionImpl;
 import org.activiti.engine.impl.persistence.entity.MessageEventSubscriptionEntity;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MessageSubscriptionConverterTest {
 
@@ -30,13 +29,13 @@ public class MessageSubscriptionConverterTest {
 
     @Test
     public void convertShouldReturnBPMNMessage() {
-  
+
         MessageEventSubscriptionEntity entity = mock(MessageEventSubscriptionEntity.class);
         given(entity.getConfiguration()).willReturn("correlationKey");
         given(entity.getEventName()).willReturn("messageName");
         given(entity.getProcessDefinitionId()).willReturn("procDefId");
         given(entity.getProcessInstanceId()).willReturn("procInstId");
-                
+
         MessageSubscriptionImpl messageSubscription = converter.convertToMessageSubscription(entity);
 
         //then
@@ -45,7 +44,7 @@ public class MessageSubscriptionConverterTest {
         assertThat(messageSubscription.getProcessDefinitionId()).isEqualTo("procDefId");
         assertThat(messageSubscription.getConfiguration()).isEqualTo("correlationKey");
         assertThat(messageSubscription.getEventName()).isEqualTo("messageName");
-     
+
     }
 
 }

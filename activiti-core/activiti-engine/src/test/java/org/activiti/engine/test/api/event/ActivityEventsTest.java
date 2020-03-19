@@ -1,9 +1,9 @@
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -12,8 +12,7 @@
  */
 package org.activiti.engine.test.api.event;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,7 +39,7 @@ import org.activiti.engine.test.Deployment;
 
 /**
  * Test case for all {@link ActivitiEvent}s related to activities.
- * 
+ *
 
 
  */
@@ -677,14 +676,14 @@ public class ActivityEventsTest extends PluggableActivitiTestCase {
 
     runtimeService.signalEventReceived("signalName");
     assertEquals(3, listener.getEventsReceived().size());
-    
+
     assertTrue(listener.getEventsReceived().get(0) instanceof ActivitiSignalEventImpl);
     ActivitiSignalEventImpl signalEvent = (ActivitiSignalEventImpl) listener.getEventsReceived().get(0);
     assertEquals(ActivitiEventType.ACTIVITY_SIGNALED, signalEvent.getType());
     assertEquals("boundarySignalEventCatching", signalEvent.getActivityId());
     assertEquals(executionWithSignal.getProcessInstanceId(), signalEvent.getProcessInstanceId());
     assertEquals(processInstance.getProcessDefinitionId(), signalEvent.getProcessDefinitionId());
-    
+
     assertTrue(listener.getEventsReceived().get(2) instanceof ActivitiActivityCancelledEvent);
     ActivitiActivityCancelledEvent cancelEvent = (ActivitiActivityCancelledEvent) listener.getEventsReceived().get(2);
     assertEquals(ActivitiEventType.ACTIVITY_CANCELLED, cancelEvent.getType());
@@ -715,14 +714,14 @@ public class ActivityEventsTest extends PluggableActivitiTestCase {
 
     // Next, an signal-event is expected, as a result of the message
     assertEquals(2, listener.getEventsReceived().size());
-    
+
     assertTrue(listener.getEventsReceived().get(0) instanceof ActivitiSignalEventImpl);
     ActivitiSignalEventImpl signalEvent = (ActivitiSignalEventImpl) listener.getEventsReceived().get(0);
     assertEquals(ActivitiEventType.ACTIVITY_SIGNALED, signalEvent.getType());
     assertEquals("boundarySignalEventCatching", signalEvent.getActivityId());
     assertEquals(executionWithSignal.getProcessInstanceId(), signalEvent.getProcessInstanceId());
     assertEquals(processInstance.getProcessDefinitionId(), signalEvent.getProcessDefinitionId());
-    
+
     assertTrue(listener.getEventsReceived().get(1) instanceof ActivitiActivityCancelledEvent);
     ActivitiActivityCancelledEvent cancelEvent = (ActivitiActivityCancelledEvent) listener.getEventsReceived().get(1);
     assertEquals(ActivitiEventType.ACTIVITY_CANCELLED, cancelEvent.getType());

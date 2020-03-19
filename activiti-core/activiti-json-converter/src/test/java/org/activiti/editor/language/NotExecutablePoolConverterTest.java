@@ -1,12 +1,12 @@
 package org.activiti.editor.language;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.Pool;
 import org.activiti.bpmn.model.Process;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class NotExecutablePoolConverterTest extends AbstractConverterTest {
 

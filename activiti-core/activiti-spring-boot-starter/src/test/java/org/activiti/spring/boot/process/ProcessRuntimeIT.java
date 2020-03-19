@@ -1,13 +1,10 @@
 package org.activiti.spring.boot.process;
 
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-
 import org.activiti.api.process.model.Deployment;
 import org.activiti.api.process.model.ProcessDefinition;
 import org.activiti.api.process.model.ProcessInstance;
@@ -32,17 +29,14 @@ import org.activiti.runtime.api.model.impl.APIVariableInstanceConverter;
 import org.activiti.spring.boot.RuntimeTestConfiguration;
 import org.activiti.spring.boot.security.util.SecurityUtil;
 import org.activiti.spring.boot.test.util.ProcessCleanUpUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class ProcessRuntimeIT {
 
@@ -101,12 +95,12 @@ public class ProcessRuntimeIT {
     @Autowired
     private ProcessCleanUpUtil processCleanUpUtil;
 
-    @After
+    @AfterEach
     public void cleanUp(){
         processCleanUpUtil.cleanUpWithAdmin();
     }
 
-    @Before
+    @BeforeEach
     public void init() {
         eventPublisher = spy(applicationEventPublisher);
 
@@ -374,7 +368,7 @@ public class ProcessRuntimeIT {
         assertThat(getSingleProcessInstance).isNotNull();
         assertThat(getSingleProcessInstance.getStatus()).isEqualTo(ProcessInstance.ProcessInstanceStatus.RUNNING);
 
-        // I need to clean up the Process Instances that I started because @WithMockUser cannot be used in @Before method
+        // I need to clean up the Process Instances that I started because @WithMockUser cannot be used in @BeforeEach method
         ProcessInstance deletedProcessInstance = processRuntime.delete(ProcessPayloadBuilder.delete(getSingleProcessInstance));
         assertThat(deletedProcessInstance).isNotNull();
 

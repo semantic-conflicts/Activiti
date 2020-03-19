@@ -12,7 +12,7 @@
  */
 package org.activiti.standalone.validation;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.io.IOException;
 import java.io.InputStream;

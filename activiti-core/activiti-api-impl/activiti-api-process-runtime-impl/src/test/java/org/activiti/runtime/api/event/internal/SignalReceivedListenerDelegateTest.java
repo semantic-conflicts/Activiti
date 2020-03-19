@@ -16,24 +16,25 @@
 
 package org.activiti.runtime.api.event.internal;
 
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+
+import java.util.Arrays;
+import java.util.Optional;
 import org.activiti.api.process.model.events.BPMNSignalReceivedEvent;
 import org.activiti.api.process.runtime.events.listener.BPMNElementEventListener;
 import org.activiti.api.runtime.event.impl.BPMNSignalReceivedEventImpl;
 import org.activiti.engine.delegate.event.ActivitiEventType;
 import org.activiti.engine.delegate.event.impl.ActivitiSignalEventImpl;
 import org.activiti.runtime.api.event.impl.ToSignalReceivedConverter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.mockito.MockitoAnnotations.initMocks;
-
+@ExtendWith(MockitoExtension.class)
 public class SignalReceivedListenerDelegateTest {
 
     private SignalReceivedListenerDelegate listenerDelegate;
@@ -47,9 +48,8 @@ public class SignalReceivedListenerDelegateTest {
     @Mock
     private ToSignalReceivedConverter converter;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        initMocks(this);
         listenerDelegate = new SignalReceivedListenerDelegate(Arrays.asList(firstListener, secondListener), converter);
     }
 

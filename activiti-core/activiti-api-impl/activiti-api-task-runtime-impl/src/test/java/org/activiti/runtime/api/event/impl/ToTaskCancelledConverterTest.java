@@ -17,10 +17,9 @@
 package org.activiti.runtime.api.event.impl;
 
 import static org.activiti.runtime.api.model.impl.MockTaskBuilder.taskEntityBuilder;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.util.Optional;
 
@@ -32,11 +31,13 @@ import org.activiti.engine.delegate.event.impl.ActivitiEntityEventImpl;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.runtime.api.model.impl.APITaskConverter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class ToTaskCancelledConverterTest {
 
     @InjectMocks
@@ -44,11 +45,6 @@ public class ToTaskCancelledConverterTest {
 
     @Mock
     private APITaskConverter taskConverter;
-
-    @Before
-    public void setUp() {
-        initMocks(this);
-    }
 
     @Test
     public void should_returnConvertedTask_when_entityIsACancelledTask() {

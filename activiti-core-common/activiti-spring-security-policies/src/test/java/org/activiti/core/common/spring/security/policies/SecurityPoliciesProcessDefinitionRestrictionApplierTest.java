@@ -21,9 +21,9 @@ import java.util.Set;
 
 import org.activiti.api.process.model.payloads.GetProcessDefinitionsPayload;
 import org.activiti.core.common.spring.security.policies.SecurityPoliciesProcessDefinitionRestrictionApplier;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class SecurityPoliciesProcessDefinitionRestrictionApplierTest {
 

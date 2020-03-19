@@ -1,7 +1,7 @@
 package org.activiti.editor.language;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.activiti.bpmn.model.FlowElement;
 import org.activiti.bpmn.model.ParallelGateway;
 import org.activiti.bpmn.model.SequenceFlow;
 import org.activiti.bpmn.model.SubProcess;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FlowNodeInSubProcessConverterTest extends AbstractConverterTest {
 

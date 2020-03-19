@@ -20,17 +20,18 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.activiti.engine.delegate.DelegateExecution;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.activiti.runtime.api.impl.MappingExecutionContext.buildMappingExecutionContext;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
-import static org.mockito.MockitoAnnotations.initMocks;
 
+@ExtendWith(MockitoExtension.class)
 public class MappingAwareUserTaskBehaviorTest {
 
     @InjectMocks
@@ -38,11 +39,6 @@ public class MappingAwareUserTaskBehaviorTest {
 
     @Mock
     private VariablesMappingProvider mappingProvider;
-
-    @Before
-    public void setUp() throws Exception {
-        initMocks(this);
-    }
 
     @Test
     public void calculateInputVariablesShouldReturnValueFromMappingProvider() {

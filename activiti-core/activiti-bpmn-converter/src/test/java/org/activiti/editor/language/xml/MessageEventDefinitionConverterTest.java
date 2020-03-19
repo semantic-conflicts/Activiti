@@ -1,7 +1,6 @@
 package org.activiti.editor.language.xml;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
+import static org.assertj.core.api.Assertions.*;
 
 import org.activiti.bpmn.model.BoundaryEvent;
 import org.activiti.bpmn.model.BpmnModel;
@@ -11,7 +10,7 @@ import org.activiti.bpmn.model.IntermediateCatchEvent;
 import org.activiti.bpmn.model.Message;
 import org.activiti.bpmn.model.StartEvent;
 import org.activiti.bpmn.model.ThrowEvent;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MessageEventDefinitionConverterTest extends AbstractConverterTest {
 
@@ -86,7 +85,7 @@ public class MessageEventDefinitionConverterTest extends AbstractConverterTest {
                                            .flatExtracting("eventDefinitions")
                                            .extracting("messageRef", "messageExpression", "correlationKey")
                                            .contains(tuple(null, "catchMessage", "${correlationId}"));
-        
+
     }
 
     protected String getResource() {

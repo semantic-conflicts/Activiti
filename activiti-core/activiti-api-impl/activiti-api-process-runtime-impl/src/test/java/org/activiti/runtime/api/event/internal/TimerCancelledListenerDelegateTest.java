@@ -16,25 +16,23 @@
 
 package org.activiti.runtime.api.event.internal;
 
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
+
+import java.util.Collections;
+import java.util.Optional;
 import org.activiti.api.process.model.events.BPMNTimerCancelledEvent;
 import org.activiti.api.process.runtime.events.listener.BPMNElementEventListener;
 import org.activiti.api.runtime.event.impl.BPMNTimerCancelledEventImpl;
 import org.activiti.engine.delegate.event.ActivitiEntityEvent;
 import org.activiti.runtime.api.event.impl.ToTimerCancelledConverter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
-import java.util.Optional;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.MockitoAnnotations.initMocks;
-
+@ExtendWith(MockitoExtension.class)
 public class TimerCancelledListenerDelegateTest {
 
     private TimerCancelledListenerDelegate listenerDelegate;
@@ -45,9 +43,8 @@ public class TimerCancelledListenerDelegateTest {
     @Mock
     private ToTimerCancelledConverter converter;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        initMocks(this);
         listenerDelegate = new TimerCancelledListenerDelegate(Collections.singletonList(listener), converter);
     }
 

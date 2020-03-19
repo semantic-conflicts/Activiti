@@ -16,14 +16,12 @@
 
 package org.activiti.spring.boot.tasks;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.activiti.api.model.shared.model.VariableInstance;
 import org.activiti.api.process.model.ProcessInstance;
 import org.activiti.api.task.model.Task;
@@ -31,20 +29,16 @@ import org.activiti.common.util.DateFormatterProvider;
 import org.activiti.spring.boot.process.ProcessBaseRuntime;
 import org.activiti.spring.boot.test.util.ProcessCleanUpUtil;
 import org.activiti.spring.boot.test.util.TaskCleanUpUtil;
-import org.junit.After;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ContextConfiguration
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@TestMethodOrder(org.junit.jupiter.api.MethodOrderer.Alphanumeric.class)
 public class TaskRuntimeVariableMappingIT {
 
     private static final String TASK_VAR_MAPPING = "taskVarMapping";
@@ -64,7 +58,7 @@ public class TaskRuntimeVariableMappingIT {
     @Autowired
     private DateFormatterProvider dateFormatterProvider;
 
-    @After
+    @AfterEach
     public void cleanUp() {
         processCleanUpUtil.cleanUpWithAdmin();
         taskCleanUpUtil.cleanUpWithAdmin();

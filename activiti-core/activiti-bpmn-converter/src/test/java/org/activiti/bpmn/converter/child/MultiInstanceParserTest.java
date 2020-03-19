@@ -17,7 +17,7 @@
 package org.activiti.bpmn.converter.child;
 
 import static org.activiti.bpmn.constants.BpmnXMLConstants.ELEMENT_MULTIINSTANCE;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.io.InputStream;
 import javax.xml.stream.XMLInputFactory;
@@ -26,7 +26,7 @@ import javax.xml.stream.XMLStreamReader;
 import org.activiti.bpmn.converter.child.multi.instance.MultiInstanceParser;
 import org.activiti.bpmn.model.MultiInstanceLoopCharacteristics;
 import org.activiti.bpmn.model.UserTask;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MultiInstanceParserTest {
 

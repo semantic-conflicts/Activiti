@@ -16,14 +16,11 @@
 
 package org.activiti.spring.boot.process;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.assertj.core.api.Assertions.tuple;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.activiti.api.model.shared.event.RuntimeEvent;
 import org.activiti.api.model.shared.model.VariableInstance;
 import org.activiti.api.process.model.ProcessInstance;
@@ -34,8 +31,8 @@ import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
 import org.activiti.api.process.model.events.BPMNMessageEvent;
 import org.activiti.api.process.model.events.MessageSubscriptionCancelledEvent;
 import org.activiti.api.process.model.events.MessageSubscriptionEvent;
-import org.activiti.api.process.model.events.StartMessageDeployedEvent;
 import org.activiti.api.process.model.events.ProcessRuntimeEvent;
+import org.activiti.api.process.model.events.StartMessageDeployedEvent;
 import org.activiti.api.process.runtime.ProcessRuntime;
 import org.activiti.api.process.runtime.events.listener.ProcessRuntimeEventListener;
 import org.activiti.api.runtime.event.impl.StartMessageDeployedEvents;
@@ -52,18 +49,15 @@ import org.activiti.spring.boot.tasks.TaskBaseRuntime;
 import org.activiti.spring.boot.test.util.ProcessCleanUpUtil;
 import org.activiti.test.LocalEventSource;
 import org.assertj.core.groups.Tuple;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestComponent;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.event.EventListener;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @Import({ProcessRuntimeBPMNMessageIT.TestStartMessageDeployedRuntimeEventListener.class,
          ProcessRuntimeBPMNMessageIT.TestStartMessageDeployedApplicationEventListener.class})
@@ -140,14 +134,14 @@ public class ProcessRuntimeBPMNMessageIT {
     @Autowired
     private TestStartMessageDeployedApplicationEventListener startMessageDeployedApplicationEventListener;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         localEventSource.clearEvents();
         MessageTestConfiguration.messageEvents.clear();
         securityUtil.logInAs("user");
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         processCleanUpUtil.cleanUpWithAdmin();
         localEventSource.clearEvents();

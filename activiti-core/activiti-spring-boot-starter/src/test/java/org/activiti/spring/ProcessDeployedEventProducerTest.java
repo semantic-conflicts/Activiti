@@ -16,30 +16,28 @@
 
 package org.activiti.spring;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.Mockito.*;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
-
 import org.activiti.api.process.model.events.ProcessDeployedEvent;
 import org.activiti.api.process.runtime.events.listener.ProcessRuntimeEventListener;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.runtime.api.model.impl.APIProcessDefinitionConverter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 
+@ExtendWith(MockitoExtension.class)
 public class ProcessDeployedEventProducerTest {
 
     private ProcessDeployedEventProducer producer;
@@ -59,9 +57,8 @@ public class ProcessDeployedEventProducerTest {
     @Mock
     private ApplicationEventPublisher eventPublisher;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        initMocks(this);
         producer = new ProcessDeployedEventProducer(repositoryService,
                                                     converter,
                                                     Arrays.asList(firstListener,

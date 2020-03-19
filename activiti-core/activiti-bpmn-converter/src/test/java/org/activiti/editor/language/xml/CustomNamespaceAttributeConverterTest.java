@@ -1,8 +1,8 @@
 package org.activiti.editor.language.xml;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,7 @@ import org.activiti.bpmn.model.ExtensionAttribute;
 import org.activiti.bpmn.model.FlowElement;
 import org.activiti.bpmn.model.Process;
 import org.activiti.bpmn.model.UserTask;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CustomNamespaceAttributeConverterTest extends AbstractConverterTest {
 
@@ -51,7 +51,7 @@ public class CustomNamespaceAttributeConverterTest extends AbstractConverterTest
 
     FlowElement flowElement = model.getMainProcess().getFlowElement("usertask");
     assertNotNull(flowElement);
-    assertTrue(flowElement instanceof UserTask);
+    assertThat(flowElement).isInstanceOf(UserTask.class);
     assertEquals("usertask", flowElement.getId());
     UserTask userTask = (UserTask) flowElement;
     assertEquals("usertask", userTask.getId());

@@ -1,7 +1,7 @@
 package org.activiti.editor.language;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.activiti.bpmn.model.FlowElement;
 import org.activiti.bpmn.model.FormProperty;
 import org.activiti.bpmn.model.ImplementationType;
 import org.activiti.bpmn.model.StartEvent;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class StartEventConverterTest extends AbstractConverterTest {
 
@@ -44,18 +44,18 @@ public class StartEventConverterTest extends AbstractConverterTest {
     assertEquals("startFormKey", startEvent.getFormKey());
     assertEquals("startInitiator", startEvent.getInitiator());
     assertEquals("startDoc", startEvent.getDocumentation());
- 
+
     assertEquals(2, startEvent.getExecutionListeners().size());
     ActivitiListener executionListener = startEvent.getExecutionListeners().get(0);
     assertEquals("start", executionListener.getEvent());
     assertEquals("org.test.TestClass", executionListener.getImplementation());
     assertEquals(ImplementationType.IMPLEMENTATION_TYPE_CLASS, executionListener.getImplementationType());
-    
+
     executionListener = startEvent.getExecutionListeners().get(1);
     assertEquals("end", executionListener.getEvent());
     assertEquals("${someExpression}", executionListener.getImplementation());
     assertEquals(ImplementationType.IMPLEMENTATION_TYPE_EXPRESSION, executionListener.getImplementationType());
-    
+
     List<FormProperty> formProperties = startEvent.getFormProperties();
     assertEquals(2, formProperties.size());
 

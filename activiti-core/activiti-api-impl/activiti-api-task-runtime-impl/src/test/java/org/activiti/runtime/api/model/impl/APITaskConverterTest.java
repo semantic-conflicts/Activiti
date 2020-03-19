@@ -16,18 +16,6 @@
 
 package org.activiti.runtime.api.model.impl;
 
-import org.activiti.api.task.model.Task;
-import org.activiti.engine.TaskService;
-import org.activiti.engine.impl.persistence.entity.IdentityLinkEntityImpl;
-import org.activiti.engine.task.IdentityLink;
-import org.activiti.engine.task.IdentityLinkType;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-
-import java.util.Date;
-
 import static java.util.Arrays.asList;
 import static org.activiti.api.task.model.Task.TaskStatus.ASSIGNED;
 import static org.activiti.api.task.model.Task.TaskStatus.CANCELLED;
@@ -35,13 +23,23 @@ import static org.activiti.api.task.model.Task.TaskStatus.CREATED;
 import static org.activiti.api.task.model.Task.TaskStatus.SUSPENDED;
 import static org.activiti.runtime.api.model.impl.MockTaskBuilder.taskBuilder;
 import static org.activiti.runtime.api.model.impl.MockTaskBuilder.taskEntityBuilder;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.Mockito.*;
 
+import java.util.Date;
+import org.activiti.api.task.model.Task;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.impl.persistence.entity.IdentityLinkEntityImpl;
+import org.activiti.engine.task.IdentityLink;
+import org.activiti.engine.task.IdentityLinkType;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
 public class APITaskConverterTest {
 
     @InjectMocks
@@ -49,11 +47,6 @@ public class APITaskConverterTest {
 
     @Mock
     private TaskService taskService;
-
-    @Before
-    public void setUp() {
-        initMocks(this);
-    }
 
     @Test
     public void should_convertTask_when_allFieldsAreSet() {

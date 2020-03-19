@@ -1,13 +1,13 @@
 package org.activiti.editor.language.xml;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.DataStore;
 import org.activiti.bpmn.model.MessageFlow;
 import org.activiti.bpmn.model.Pool;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MessageFlowConverterTest extends AbstractConverterTest {
 

@@ -17,9 +17,9 @@
 package org.activiti.runtime.api.model.impl;
 
 import org.activiti.api.task.model.TaskCandidateGroup;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 

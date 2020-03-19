@@ -1,13 +1,12 @@
 package org.activiti.editor.language.xml;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
+import static org.assertj.core.api.Assertions.*;
 
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.EventSubProcess;
 import org.activiti.bpmn.model.Message;
 import org.activiti.bpmn.model.StartEvent;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class StartEventNonInterruptingEventSubprocessConverterTest extends AbstractConverterTest {
 

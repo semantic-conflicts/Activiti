@@ -16,10 +16,9 @@
 
 package org.activiti.runtime.api.connector;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.util.Collections;
 import java.util.Map;
@@ -34,13 +33,16 @@ import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.impl.persistence.entity.integration.IntegrationContextEntityImpl;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.runtime.api.impl.VariablesMappingProvider;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class IntegrationContextBuilderTest {
-    
+
     private static final int PROCESS_DEFINITION_VERSION = 1;
     private static final String PARENT_PROCESS_INSTANCE_ID = "parentProcessInstanceId";
     private static final String PROCESS_DEFINITION_KEY = "processDefinitionKey";
@@ -57,22 +59,20 @@ public class IntegrationContextBuilderTest {
     @Mock
     private VariablesMappingProvider inboundVariablesProvider;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        initMocks(this);
-        
         ProcessEngineConfigurationImpl processEngineConfiguration = mock(ProcessEngineConfigurationImpl.class);
         Context.setProcessEngineConfiguration(processEngineConfiguration);
-        
+
         DeploymentManager deploymentManager = mock(DeploymentManager.class);
         ProcessDefinition processDefinition = mock(ProcessDefinition.class);
-        
+
         given(processEngineConfiguration.getDeploymentManager()).willReturn(deploymentManager);
         given(deploymentManager.findDeployedProcessDefinitionById(PROCESS_DEFINITION_ID)).willReturn(processDefinition);
-        
+
         given(processDefinition.getId()).willReturn(PROCESS_DEFINITION_ID);
         given(processDefinition.getKey()).willReturn(PROCESS_DEFINITION_KEY);
-        given(processDefinition.getVersion()).willReturn(PROCESS_DEFINITION_VERSION);        
+        given(processDefinition.getVersion()).willReturn(PROCESS_DEFINITION_VERSION);
     }
 
     @Test
@@ -162,4 +162,5 @@ public class IntegrationContextBuilderTest {
         assertThat(integrationContext.getParentProcessInstanceId()).isEqualTo(PARENT_PROCESS_INSTANCE_ID);
         assertThat(integrationContext.getInBoundVariables()).containsAllEntriesOf(variables);
     }
+
 }

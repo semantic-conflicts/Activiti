@@ -1,6 +1,6 @@
 package org.activiti.spring.boot.security.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import org.activiti.api.runtime.shared.security.SecurityManager;
 import org.slf4j.Logger;

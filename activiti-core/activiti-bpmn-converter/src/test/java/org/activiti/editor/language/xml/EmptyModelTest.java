@@ -1,9 +1,9 @@
 package org.activiti.editor.language.xml;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.activiti.bpmn.exceptions.XMLException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class EmptyModelTest extends AbstractConverterTest {
 

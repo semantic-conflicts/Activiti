@@ -16,19 +16,20 @@
 
 package org.activiti.runtime.api.event.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 import org.activiti.api.process.model.events.BPMNErrorReceivedEvent;
 import org.activiti.api.runtime.model.impl.BPMNErrorImpl;
 import org.activiti.engine.delegate.event.ActivitiErrorEvent;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class ToErrorReceivedConverterTest {
 
     @InjectMocks
@@ -36,11 +37,6 @@ public class ToErrorReceivedConverterTest {
 
     @Mock
     private BPMNErrorConverter bpmnErrorConverter;
-
-    @Before
-    public void setUp() {
-        initMocks(this);
-    }
 
     @Test
     public void fromShouldReturnConvertedEventAndSetProcessInstanceIdAndProcessDefinitionId() {
@@ -50,7 +46,7 @@ public class ToErrorReceivedConverterTest {
         given(internalEvent.getProcessInstanceId()).willReturn("procInstId");
 
         BPMNErrorImpl bpmnError = new BPMNErrorImpl("myError");
-        
+
         given(bpmnErrorConverter.convertToBPMNError(internalEvent)).willReturn(bpmnError);
 
         //when

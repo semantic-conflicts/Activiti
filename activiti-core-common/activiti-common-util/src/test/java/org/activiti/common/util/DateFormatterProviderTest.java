@@ -16,15 +16,14 @@
 
 package org.activiti.common.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DateFormatterProviderTest {
 
@@ -54,7 +53,7 @@ public class DateFormatterProviderTest {
 
     @Test
     public void should_throwException_when_stringIsNotADate() {
-        
+
         String dateStr = "this is not a date";
 
         assertThatExceptionOfType(DateTimeParseException.class)
@@ -73,7 +72,7 @@ public class DateFormatterProviderTest {
 
     @Test
     public void should_returnDate_when_dateIsProvided() {
-        
+
         Date initialDate = new Date(1000);
 
         Date date = provider.toDate(initialDate);
